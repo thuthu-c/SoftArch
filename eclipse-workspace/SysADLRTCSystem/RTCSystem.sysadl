@@ -1,0 +1,25 @@
+Model SysADLModel;
+package SysADL.types {
+	value type Int { 
+		
+	} 
+	value type Boolean { 
+		
+	} 
+	value type String { 
+		
+	} 
+	value type Void { 
+		
+	} 
+	value type Real { 
+		
+	}
+dimension Temperature unit Celsius { dimension = Temperature } unit Farenheit { dimension = Temperature } value type Temperature { dimension = Temperature } value type CelsiusTemperature extends Temperature { unit = Celsius dimension = Temperature } value type FarenheitTemperature extends Temperature { unit = Farenheit dimension = Temperature } enum Command { On , Off } datatype Commands { attributes : cooler : Command ; heater : Command ; } } package RTCSystemConnectors { import RTCSystemPorts ; connector def FarenheitToCelsiusCN { participants : ~ source : FTemperatureOPT ; ~ destination : CTemperatureIPT ; flows : FarenheitTemperature from source to destination } connector def CTemperatureCN { participants : ~ source : CTemperatureOPT ; ~ destination : CTemperatureIPT ; flows : CelsiusTemperature from source to destination } connector def DetectPresenceCN { participants : ~ source : PresenceOPT ; ~ destination : PresenceIPT ; flows : Boolean from source to destination } connector def SendCommandCN { participants : ~ source : CommandOPT ; ~ destination : CommandIPT ; flows : Command from source to destination } } package RTCSystemComponents { import RTCSystemPorts ; import SysADL.types ; import RTCSystemConnectors ;
+	component def RTCSystem { configuration { components : S1 : TemperatureSensorCP { using ports : current : FTemperatureOPT ; } S2 : TemperatureSensorCP { using ports : current : FTemperatureOPT ; } RoomTemperatureControllerCP : RoomTemperatureControllerCP { using ports : detected : PresenceIPT ; userTemp : CTemperatureIPT ; cooling : CommandOPT ; localTemp2 : CTemperatureIPT ; localTemp1 : CTemperatureIPT ; heating : CommandOPT ; } HeatherCP : HeatherCP { using ports : controller : CommandIPT ; } CoolerCP : CoolerCP { using ports : controller : CommandIPT ; } PresenceSensorCP : PresenceSensorCP { using ports : detected : PresenceOPT ; } } }
+	component def PresenceSensorCP { ports : detected : PresenceOPT ; }
+	component def HeaterCP { ports : controller : CommandIPT ; }
+	component def RoomTemperatureControllerCP { ports : detected : PresenceIPT ; userTemp : CTemperatureIPT ; cooling : CommandOPT ; localTemp2 : CTemperatureIPT ; localTemp1 : CTemperatureIPT ; heating : CommandOPT ; }
+	component def HeatherCP { ports : controller : CommandIPT ; }
+	component def TemperatureSensorCP { ports : current : FTemperatureOPT ; }
+	component def CoolerCP { ports : controller : CommandIPT ; } } package RTCSystemPorts { import SysADL.types ; port def FTemperatureOPT { flow out FarenheitTemperature } port def CTemperatureOPT { flow out CelsiusTemperature } port def FTemperatureIPT { flow in FarenheitTemperature } port def CTemperatureIPT { flow in CelsiusTemperature } port def CommandOPT { flow out Command port def newElement { ports : } port def newElement { ports : } } port def CommandIPT { flow in Command } port def PresenceOPT { flow out Boolean } port def PresenceIPT { flow in Boolean } }

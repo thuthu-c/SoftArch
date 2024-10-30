@@ -1,0 +1,18 @@
+Model SysADLModel;
+package SysADL.types {
+	value type Int { 
+		
+	} 
+	value type Boolean { 
+		
+	} 
+	value type String { 
+		
+	} 
+	value type Void { 
+		
+	} 
+	value type Real { 
+		
+	}
+dimension Temperature unit Celsius { dimension = Temperature } unit Farenheit { dimension = Temperature } value type Temperature { dimension = Temperature } value type CelsiusTemperature extends Temperature { unit = Celsius dimension = Temperature } value type FarenheitTemperature extends Temperature { unit = Farenheit dimension = Temperature } enum Command { On } } package RTCSystemConnectors { import RTCSystemPorts ; } package RTCSystemComponents { import RTCSystemPorts ; import SysADL.types ; import RTCSystemConnectors ; } package RTCSystemPorts { import SysADL.types ; }
