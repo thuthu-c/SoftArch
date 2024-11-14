@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <dirs>
     <entry loc="/home/thucr7/Downloads/eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_21.0.4.v20240802-1551/jre" stamp="1725522194591"/>
-    <entry loc="/usr/lib/jvm/java-21-openjdk-amd64" stamp="1730127866587"/>
-    <entry loc="/usr/lib/jvm/java-11-openjdk-amd64" stamp="1727713518655"/>
+    <entry loc="/usr/lib/jvm/java-17-openjdk-amd64" stamp="1731409571113"/>
+    <entry loc="/usr/lib/jvm/java-21-openjdk-amd64" stamp="1731409584754"/>
+    <entry loc="/usr/lib/jvm/java-11-openjdk-amd64" stamp="1731409630734"/>
     <entry loc="/home/thucr7/Downloads/eclipse/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_21.0.4.v20240802-1551" stamp="1725522194591"/>
 </dirs>
