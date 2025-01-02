@@ -5,4 +5,4 @@ Model SysADLModel ; package SysADL.types { value type Int { } value type Boolean
 	component def LeitorDeTicketCP { ports : lido : EstadoIPT ; }
 	component def MaquinaDePagamentoCP { ports : calculado : RDinheiroOPT ; }
 	component def SensorDeVagaCP { ports : detectado : DetectadoOPT ; }
-	component def RastreadorCP { ports : ocupado : DetectadoOPT ; } }
+	component def RastreadorCP { ports : ocupado : DetectadoOPT ; } activity def CalcularValorTotalAC ( horas : HorasTempo ) ( minutos : MinutosTempo ) : ( reais : ReaisDinheiro , centavos : CentavosDinheiro ) { body { actions : total : newAction { using pins : t1 : HorasTempo ; t2 : MinutosTempo ; } delegate reais to total delegate centavos to total delegate horas to t1 delegate minutos to t2 } } action def newAction ( t1 : HorasTempo , t2 : MinutosTempo ) : Dinheiro { constraint : post-condition CalcularValorTotalEQ delegate t1 to t1 delegate t2 to t2 } constraint CalcularValorTotalEQ ( t1 : HorasTempo , t2 : MinutosTempo ) : ( valorTotal : Dinheiro ) { } }
